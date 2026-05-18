@@ -41,7 +41,7 @@ const Form = () => {
         <label className="block mb-8 text-3xl" htmlFor="add a new to-do ">
           Add a new to-do :
         </label>
-        <div className="flex-wrap w-full h-full grid grid-cols-2 grid-rows-5 gap-2">
+        <div className="flex-wrap w-full h-full sm: ">
           <div>
             <label htmlFor="name">Name:</label>
             <input
