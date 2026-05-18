@@ -1,0 +1,134 @@
+import { useState, useContext } from "react";
+import { UserContext } from "./UserContext";
+import { useNavigate } from "react-router-dom";
+const Form = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [priority, setPriority] = useState("");
+  const [fulfillment, setFulfillment] = useState("");
+  const { setTodos } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newTodo = {
+      id: Date.now(),
+      name,
+      description,
+      category,
+      date,
+      time,
+      priority,
+      fulfillment,
+    };
+    setTodos((prev) => [...prev, newTodo]);
+    navigate("/");
+  }
+  return (
+    <div className="bg-[#c6e1fd] rounded-2xl w-screen py-16 px-8 h-screen">
+      <h1 className="text-center text-4xl text-white font-bold">
+        React To-Do List
+      </h1>
+      <form
+        action=""
+        className="w-full h-full bg-white rounded-[20px] py-4 px-2"
+        onSubmit={handleSubmit}
+      >
+        <label className="block mb-8 text-3xl" htmlFor="add a new to-do ">
+          Add a new to-do :
+        </label>
+        <div className="flex-wrap w-full h-full grid grid-cols-2 grid-rows-5 gap-2">
+          <div>
+            <label htmlFor="name">Name:</label>
+            <input
+              type="text"
+              name="name"
+              id=""
+              placeholder="name for the task you're going to do"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="description">Description:</label>
+            <input
+              type="address"
+              placeholder="a short description of the tas- can be omitted"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="category">Category:</label>
+            <input
+              type="text"
+              name="category"
+              id=""
+              placeholder="e.g household, school,work"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="date">Date:</label>
+            <input
+              type="text"
+              placeholder="dd/mm/yyy -can be omitted"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="time">Time:</label>
+            <input
+              type="text"
+              placeholder="hh:mm -can be omitted"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="priority">Priority:</label>
+            <select
+              value={priority}
+              name="dropdown"
+              id=""
+              className="border border-black"
+              onChange={(e) => setPriority(e.target.value)}
+            >
+              <option value="">select from dropdown</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">low</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="fulfillment">Fulfillment:</label>
+            <input
+              type="range"
+              value={fulfillment}
+              onChange={(e) => setFulfillment(Number(e.target.value))}
+            />
+          </div>
+          <div className="text-end flex justify-evenly">
+            <button type="submit" className="px-1 bg-blue-200">
+              Save
+            </button>
+            <button
+              type="reset"
+              className="px-1 bg-white border-black border-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Form;
