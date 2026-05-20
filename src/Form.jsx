@@ -29,7 +29,7 @@ const Form = () => {
     navigate("/");
   }
   return (
-    <div className="bg-[#c6e1fd] rounded-2xl w-screen py-16 px-8 h-screen">
+    <div className="bg-[#FFFFFF80] rounded-2xl w-screen py-16 px-8 h-screen lg:overflow-x-hidden overflow-y-hidden">
       <h1 className="text-center text-4xl text-white font-bold">
         React To-Do List
       </h1>
@@ -41,10 +41,11 @@ const Form = () => {
         <label className="block mb-8 text-3xl" htmlFor="add a new to-do ">
           Add a new to-do :
         </label>
-        <div className="flex-wrap w-full h-full sm: ">
+        <div className="w-full h-full flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-4">
           <div>
             <label htmlFor="name">Name:</label>
             <input
+              required
               type="text"
               name="name"
               id=""
@@ -56,6 +57,7 @@ const Form = () => {
           <div>
             <label htmlFor="description">Description:</label>
             <input
+              required
               type="address"
               placeholder="a short description of the tas- can be omitted"
               value={description}
@@ -65,6 +67,7 @@ const Form = () => {
           <div>
             <label htmlFor="category">Category:</label>
             <input
+              required
               type="text"
               name="category"
               id=""
@@ -76,6 +79,7 @@ const Form = () => {
           <div>
             <label htmlFor="date">Date:</label>
             <input
+              required
               type="text"
               placeholder="dd/mm/yyy -can be omitted"
               value={date}
@@ -85,6 +89,7 @@ const Form = () => {
           <div>
             <label htmlFor="time">Time:</label>
             <input
+              required
               type="text"
               placeholder="hh:mm -can be omitted"
               value={time}
@@ -94,6 +99,7 @@ const Form = () => {
           <div>
             <label htmlFor="priority">Priority:</label>
             <select
+              required
               value={priority}
               name="dropdown"
               id=""
@@ -109,18 +115,22 @@ const Form = () => {
           <div>
             <label htmlFor="fulfillment">Fulfillment:</label>
             <input
+              required
               type="range"
               value={fulfillment}
               onChange={(e) => setFulfillment(Number(e.target.value))}
             />
           </div>
-          <div className="text-end flex justify-evenly">
-            <button type="submit" className="px-1 bg-blue-200">
+          <div>
+            <button
+              type="submit"
+              className="px-8 py-2 rounded-2xl bg-[#517FF6] mr-20 text-white"
+            >
               Save
             </button>
             <button
               type="reset"
-              className="px-1 bg-white border-black border-2"
+              className="px-8 py-2 rounded-2xl bg-white border-black border-2"
             >
               Cancel
             </button>
